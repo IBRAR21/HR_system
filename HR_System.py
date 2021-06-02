@@ -10,6 +10,7 @@ IBRAR, Added code, 06/01/2021
 import csv
 from datetime import datetime, date, timedelta
 
+
 # Read data from csv file
 def read_data(csv_file):
     data_list = []
@@ -28,15 +29,16 @@ def write_data(csv_file, updated_data_list):
         csv_writer.writerows(updated_data_list)
     print("File updated")
 
-#convert date strings into datetime format
+
+# convert date strings into datetime format
 def reformat_list(source_list):
     reformatted_list = []
     for employee in source_list:
-       employee["Employee_Date_of_birth"] = datetime.strptime(employee["Employee_Date_of_birth"], "%m/%d/%y").date()
-       employee["Start_date"] = datetime.strptime(employee["Start_date"], "%m/%d/%y").date()
-       if employee["End_date"] != "":
-           employee["End_date"] = datetime.strptime(employee["End_date"], "%m/%d/%y").date()
-       reformatted_list.append(employee)
+        employee["Employee_Date_of_birth"] = datetime.strptime(employee["Employee_Date_of_birth"], "%m/%d/%y").date()
+        employee["Start_date"] = datetime.strptime(employee["Start_date"], "%m/%d/%y").date()
+        if employee["End_date"] != "":
+            employee["End_date"] = datetime.strptime(employee["End_date"], "%m/%d/%y").date()
+        reformatted_list.append(employee)
     return reformatted_list
 
 
@@ -47,7 +49,7 @@ def get_current_employees(source_list):
         if employee["End_date"] == "":
             employee.pop("End_date")
             current_employees.append(employee)
-    return sorted(current_employees, key = lambda i: i["Employee_ID"])
+    return sorted(current_employees, key=lambda i: i["Employee_ID"])
 
 
 # Produce list of employees that left in the past month
@@ -59,12 +61,12 @@ def get_past_month_leaving_employees(source_list):
         if employee["End_date"] != "":
             if employee["End_date"].month == previous_month:
                 past_employees.append(employee)
-    return sorted(past_employees, key = lambda i: i["Employee_ID"])
+    return sorted(past_employees, key=lambda i: i["Employee_ID"])
 
 
 # Add new employee
 def add_new_employee(source_list):
-    New_employee = {
+    new_employee = {
         "Employee_ID": input("Please enter Employee_ID: "),
         "Employee_name": input("Please enter Employee_name: "),
         "Employee_address": input("Please enter Employee_address: "),
@@ -74,12 +76,12 @@ def add_new_employee(source_list):
         "Start_date": input("Please enter Start_date (mm/dd/yyyy): "),
         "End_date": ""
     }
-    updated_list = source_list.append(New_employee)
+    updated_list = source_list.append(new_employee)
     return updated_list
 
 
 def print_employee_report(source_list):
-    headers = list(source_list[0].keys())                                    
+    headers = list(source_list[0].keys())
     employee_table = [headers]
     for employee in source_list:
         employee_table.append([str(employee[header]) for header in headers])
@@ -88,26 +90,46 @@ def print_employee_report(source_list):
     for row in employee_table:
         print(table_format.format(*row))
 
-# Edit employee data
-
 
 # Display reminders for annual review 3 months before individual review date
-
 def review_reminder_list(source_list):
-    review_reminder_list = []
+    reminder_list = []
     for employee in source_list:
         review_date = employee["Start_date"].replace(year=date.today().year)
         reminder_date = review_date - timedelta(days=-90)
-        employee_review_data = {"Review_date" : review_date, "Reminder_date" : reminder_date}
+        employee_review_data = {"Review_date": review_date, "Reminder_date": reminder_date}
         employee.update(employee_review_data)
         if reminder_date.month == date.today().month:
-            review_reminder_list.append(employee)
-    return review_reminder_list
+            reminder_list.append(employee)
+    return reminder_list
 
+def lookup_employee_entry(name, source_list):
+    employee_entry = []
+    for employee in source_list:
+        if employee["Employee_name"].lower() == name.lower():
+            employee_entry.append(employee)
+    return employee_entry
+
+# Edit employee data
+def update_employee(source_list):
+    name = input("Please input an employee name: ")
+    print("Here are the current employee details:\n")
+    print_employee_report(lookup_employee_entry(name, source_list))
+    print("\nPlease enter the information you would like to enter:")
+    key_to_update = input("Data_field: ")
+    updated_value = input("New data: ")
+    updated_employee_list = []
+    for employee in source_list:
+        if employee["Employee_name"].lower() == name.lower():
+            employee[key_to_update] = updated_value
+        updated_employee_list.append(employee)
+    print("The employee data has been successfully updated.")
+    return updated_employee_list
 
 # main
 employees_list = reformat_list(read_data("Employees.csv"))
-#print_employee_report(get_current_employees(employees_list))
-#print_employee_report(get_past_month_leaving_employees(employees_list))
-#updated_employees_list= add_new_employee(employees_list)
-#print_employee_report(review_reminder_list(employees_list))
+print_employee_report(get_current_employees(employees_list))
+# print_employee_report(get_past_month_leaving_employees(employees_list))
+# updated_employees_list= add_new_employee(employees_list)
+# print_employee_report(review_reminder_list(employees_list))
+print_employee_report(update_employee(employees_list))
