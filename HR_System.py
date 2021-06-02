@@ -35,9 +35,9 @@ def reformat_list(list_to_be_reformatted):
     reformatted_list = []
     for employee in list_to_be_reformatted:
         employee["Employee_Date_of_birth"] = datetime.strptime(str(employee["Employee_Date_of_birth"]), "%m/%d/%y").date()
-        employee["Start_date"] = datetime.strptime(str(employee["Start_date"]), "%m/%d/%y").date()
+        employee["Start_date"] = datetime.strptime(str(employee["Start_date"]), "%y-%m-%d").date()
         if employee["End_date"] != "":
-            employee["End_date"] = datetime.strptime(str(employee["End_date"]), "%m/%d/%y").date()
+            employee["End_date"] = datetime.strptime(str(employee["End_date"]), "%y-%m-%d").date()
         reformatted_list.append(employee)
     return reformatted_list
 
@@ -76,21 +76,21 @@ def print_employee_report(list_to_be_printed):
 
 # Add new employee
 def get_new_employee_data( ):
-    ID = input("Please enter Employee_ID: "),
-    name = input("Please enter Employee_name: "),
-    address = input("Please enter Employee_address: "),
-    ssn = input("Please enter Employee_SSN (###-##-####): "),
-    dob = datetime.strptime(input("Please enter Employee_Date_of_birth (mm/dd/yy): "), "%m/%d/%y").date(),
-    title = input("Please enter Job_title: "),
-    start_date = datetime.strptime(input("Please enter Start_date (mm/dd/yy): "), "%m/%d/%y").date(),
+    ID = input("Please enter Employee_ID: ")
+    name = input("Please enter Employee_name: ")
+    address = input("Please enter Employee_address: ")
+    ssn = input("Please enter Employee_SSN (###-##-####): ")
+    dob = input("Please enter Employee_Date_of_birth (mm/dd/yy): ")
+    title = input("Please enter Job_title: ")
+    start_date = input("Please enter Start_date (mm/dd/yy): "),
     employee_dict = {}
-    employee_dict["Employee_ID"] = ID
-    employee_dict["Employee_name"] = name
-    employee_dict["Employee_address"] = address
-    employee_dict["Employee_SSN"] = ssn
-    employee_dict["Employee_Date_of_birth"] = dob
-    employee_dict["Job_title"] = title
-    employee_dict["Start_date"] = start_date
+    employee_dict["Employee_ID"] = str(ID)
+    employee_dict["Employee_name"] = str(name)
+    employee_dict["Employee_address"] = str(address)
+    employee_dict["Employee_SSN"] = str(ssn)
+    employee_dict["Employee_Date_of_birth"] = str(dob)
+    employee_dict["Job_title"] = str(title)
+    employee_dict["Start_date"] = str(start_date)
     employee_dict["End_date"] = ""
     return employee_dict
 
@@ -134,7 +134,7 @@ def update_employee(list_to_be_updated):
     print("\nPlease enter the information you would like to enter:")
     key_to_update = input("Data_field: ")
     if key_to_update in ("Employee_Date_of_birth", "Start_date","End_date"):
-        updated_value = datetime.strptime(input("New date (mm/dd/yy): "), "%m/%d/%y").date()
+        updated_value = input("New date (mm/dd/yy): ")
     else:
         updated_value = input ("New data: ")
     updated_employee_list = []
@@ -192,13 +192,13 @@ def report_action(source_list):
     while True:
         choice = report_menu()
         if choice == 1:
-            list_of_all_employees = source_list
+            list_of_all_employees = reformat_list(source_list)
             print_employee_report(get_current_employees(list_of_all_employees))
         elif choice == 2:
-            list_of_employees = source_list
+            list_of_employees = reformat_list(source_list)
             print_employee_report(get_past_month_leaving_employees(list_of_employees))
         elif choice == 3:
-            employees_list = source_list
+            employees_list = reformat_list(source_list)
             print_employee_report(review_reminder_list(employees_list))
         elif choice == 4:
             break
@@ -209,7 +209,7 @@ def exit_program():
 
 def main():
     print("\tWelcome to the HR System!")
-    employees_list = reformat_list(read_data("Employees.csv"))
+    employees_list = read_data("Employees.csv")
     while True:
         response = menu_and_choice()
         if response == 1:
