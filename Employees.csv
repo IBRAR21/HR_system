@@ -1,0 +1,25 @@
+Employee_ID,Employee_name,Employee_address,Employee_SSN,Employee_Date_of_birth,Job_title,Start_date,End_date
+1,Archie Bunker,"704 Hauser St., New York, N.Y., U.S.",848-85-6500,11/17/70,CEO,6/23/15,
+2,Sherlock Holmes,"221B Baker St., London, U.K.",202-41-1425,9/10/72,COO,6/29/15,
+3,Jerry Seinfeld,"Apartment 5A, 129 W. 81st St., New York, N.Y., U.S.",870-62-8148,9/22/74,Vice-President,10/9/15,8/18/16
+4,Andy Taylor,"322 Maple St., Mayberry, N.C., U.S.",482-40-7969,3/3/77,Vice-President,3/23/16,
+5,Beaver Cleaver,"485 Maple Drive (later 211 Pine St.), Mayfield, U.S.",371-07-9230,7/21/77,Senior Manager,5/12/16,
+6,Jim Anderson,"607 S. Maple St., U.S.",330-33-5174,10/15/77,Senior Manager,6/14/16,
+7,Fibber McGee,"79 Wistful Vista, U.S.",645-94-0678,11/16/78,Senior Manager,6/17/16,2/22/18
+8,Jed Clampett,"518 Crestview Drive, Beverly Hills, California, U.S.",805-16-9478,2/7/82,Senior Manager,8/24/16,
+9,Buffy Summers,"1630 Revello Drive, Sunnydale, California, U.S.",105-36-8233,12/31/82,Manager,9/14/16,
+10,Willis Jackson,"900 Park Avenue at 79th Street, New York, NY, U.S.",390-49-7059,4/9/84,Manager,12/30/16,
+11,Blake Carrington,"173 Essex Drive, Denver, Colorado, U.S.",185-20-1877,4/7/85,Manager,4/6/17,
+12,Ray Barone,"320 Fowler Street, Lynbrook, New York, U.S.",615-45-2639,8/28/85,Manager,6/28/17,1/25/19
+13,Howard Cunningham,"565 N. Clinton Drive, Milwaukee, Wisconsin, U.S.",109-13-7826,3/25/86,Manager,7/5/17,
+14,Dorothy Baxter,"123 Marshall Road, Hydsberg, New York, U.S.",371-75-9172,6/12/87,Manager,1/8/18,7/17/19
+15,Alice Kramden,"328 Chauncey Street, Brooklyn, New York, U.S.",852-37-0947,1/20/88,Senior Analyst,1/29/18,
+16,Peggy Hill,"84 Rainey Street, Arlen, Texas, U.S.",222-87-0355,8/1/88,Senior Analyst,2/20/19,
+17,Jessica Fletcher,"698 Candlewood Lane, Cabot Cove, Maine, U.S.",105-60-5843,7/14/89,Senior Analyst,2/21/19,
+18,Herman Munster,"1313 Mockingbird Lane, Mockingbird Heights, California, U.S.",751-63-9093,1/28/91,Senior Analyst,10/18/19,
+19,Fran Fine,"7 East 76th Street, New York, NY, U.S.",462-88-6925,5/6/91,Senior Analyst,1/8/20,
+20,Oscar Madison,"1049 Park Avenue, New York, New York, U.S.",644-78-3471,8/27/92,Analyst,2/6/20,11/23/20
+21,Shirley Partridge,"698 Syncamore Road, San Pueblo, California, U.S.",546-93-3505,9/7/92,Analyst,5/8/20,
+22,Balki Bartokomous,"711 Coldwell Street, Apartment 209, Chicago, Illinois, U.S.",216-45-7944,2/8/93,Analyst,8/13/20,
+23,Fox Mulder,"42-2630 Hegal Place, Alexandria, Virginia, U.S.",905-79-5458,10/1/98,Secretary,10/29/20,5/25/21
+24,Dana Scully,"3170 West 53 Road, #35, Annapolis, Maryland, U.S.",523-89-3844,1/22/99,Secretary,12/1/20,
